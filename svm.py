@@ -11,7 +11,7 @@
 # ]
 
 
-def createTxt(file, features, labels):
+def create_txt(file, features, labels):
     with open(file, 'w') as f:
         for feature, label in zip(features, labels):
             f.write(' '.join(feature) + ' ' + label + "\n")
