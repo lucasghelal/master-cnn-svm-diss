@@ -4,6 +4,8 @@ Versão final de códigos para a dissertação :)
 
 #### TODO
 
+- Código Diego, para gerar os blocos
+
 - [ ] Load das bases de dados
   - [ ] CVL
   - [ ] BLF
@@ -22,7 +24,7 @@ Versão final de códigos para a dissertação :)
  - [ ] Combinação das classificações
 
 
-### EXPERIMENTOS 
+### EXPERIMENTOS
 - [ ] E1a
 - [ ] E1b
 - [ ] E1c
