@@ -5,8 +5,12 @@ import numpy as np
 import hashlib
 
 
-def load_dataset_bfl(basedir='/Users/lucas/Desktop/Base_BFL_CVL_QUWI/BFL_Textura/BFL/CF00*_[12]_*.png', imgsize=32):
-    return load_dataset(basedir, start=4, end=7, imgsize=imgsize, maxlabel=100)
+def load_dataset_bfl(imgsize=32, nb_class=100):
+    X_train, Y_train = load_dataset('/Users/lucas/Desktop/mestrado/Base_BFL_CVL_QUWI/BFL_Textura/BFL/CF00*_[12]_*.png', start=4, end=7, imgsize=imgsize, maxlabel=nb_class)
+
+    X_test, Y_test = load_dataset('/Users/lucas/Desktop/mestrado/Base_BFL_CVL_QUWI/BFL_Textura/BFL/CF00*_[3]_*.png', start=4, end=7, imgsize=imgsize, maxlabel=nb_class)
+
+    return X_train, Y_train, X_test, Y_test
 
 
 def load_dataset_cvl(basedir='/Users/lucas/workspace/databases/CVL_Subset/**/*_*_00[12]_*.bmp', imgsize=256):
@@ -15,7 +19,8 @@ def load_dataset_cvl(basedir='/Users/lucas/workspace/databases/CVL_Subset/**/*_*
 
 def load_dataset(basedir, imgsize=128, start=0, end=0, maxlabel=None):
     # carrega se existir no cache (.npy)
-    hash = hashlib.sha1("|".join([basedir, str(imgsize), str(start), str(end), str(maxlabel)])).hexdigest()
+    hashstr = "|".join([str(basedir), str(imgsize), str(start), str(end), str(maxlabel)]).encode('utf-8')
+    hash = hashlib.sha1(hashstr).hexdigest()
 
     datafile = hash + "_data.npy"
     labelfile = hash + "_label.npy"
@@ -28,6 +33,7 @@ def load_dataset(basedir, imgsize=128, start=0, end=0, maxlabel=None):
 
     for filepath in glob.iglob(basedir, recursive=True):
         filename = os.path.basename(filepath)
+        print('Carregando %s' % (filename))
 
         label = int(filename[start:end])
 

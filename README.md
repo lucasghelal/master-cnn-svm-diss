@@ -13,7 +13,7 @@ Versão final de códigos para a dissertação :)
 
 - [ ] Rede Padrão - CNN
   - [ x ] Model CNN
-  - [ ] Combinação das classificações
+  - [ x ] Combinação das classificações
 
 - [ ] Rede Inception V3
   - [ ] Combinação das classificações
