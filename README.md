@@ -7,15 +7,19 @@ Versão final de códigos para a dissertação :)
 - Código Diego, para gerar os blocos
 
 - [ ] Load das bases de dados
-  - [ ] CVL
-  - [ ] BLF
+  - [ x ] CVL
+  - [ x ] BLF
   - [ ] IAM
 
 - [ ] Rede Padrão - CNN
+  - [ x ] Model CNN
   - [ ] Combinação das classificações
+
 - [ ] Rede Inception V3
   - [ ] Combinação das classificações
+
 - [ ] Gerar .txt SVM
+
 - [ ] Rodar usando LibSVM (grid search)
   - [ ] Combinação das classificações
 
