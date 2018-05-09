@@ -1,0 +1,69 @@
+Bases utilizada no
+                    Modelo:	BFL
+                    Treino:	BFL
+                    Teste:	BFL
+Detalhes da base BFL
+                    Escritores:	115
+                    Documentos:	3
+#1
+Modelo: Doc. 1
+Treino: Doc. 1
+Teste: Doc. 2
+Resultados
+115 (36800, 115)
+SUM: 0.8
+115 (36800, 115)
+PROD: 0.0173913043478
+115 (36800, 115)
+MAX: 0.504347826087
+**************
+#2
+Modelo: Doc. 1
+Treino: Doc. 1
+Teste: Doc. 2
+Resultados
+115 (36800, 115)
+SUM: 0.791304347826
+115 (36800, 115)
+PROD: 0.0173913043478
+115 (36800, 115)
+MAX: 0.504347826087
+**************
+#3
+Modelo: Doc. 1
+Treino: Doc. 1
+Teste: Doc. 2
+Resultados
+115 (36800, 115)
+SUM: 0.921739130435
+115 (36800, 115)
+PROD: 0.0173913043478
+115 (36800, 115)
+MAX: 0.573913043478
+**************
+#4
+Modelo: Doc. 1
+Treino: Doc. 1
+Teste: Doc. 2
+Resultados
+115 (36800, 115)
+SUM: 0.965217391304
+115 (36800, 115)
+PROD: 0.0173913043478
+115 (36800, 115)
+MAX: 0.64347826087
+**************
+#5
+Modelo: Doc. 1
+Treino: Doc. 1
+Teste: Doc. 2
+Resultados
+115 (36800, 115)
+SUM: 0.834782608696
+115 (36800, 115)
+PROD: 0.0173913043478
+115 (36800, 115)
+MAX: 0.6
+**************
+
+---------------------------------------------
