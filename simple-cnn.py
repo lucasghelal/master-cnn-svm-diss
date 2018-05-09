@@ -10,11 +10,11 @@ import os
 
 np.random.seed(123)
 
-cnn_name = 'Rede-BFL-TrainC1C2-TestC3-100writes-2048-100ep'
-nb_class = 100
+cnn_name = 'Rede-BFL-TrainC2C3-TestC1-115writes-4096-100ep'
+nb_class = 115
 imgsize = 32
 batch_size = 32
-nb_epochs = 1
+nb_epochs = 100
 blocos = 320
 
 X_train, Y_train, X_test, Y_test = load_dataset_bfl(imgsize=imgsize, nb_class=nb_class)

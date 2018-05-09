@@ -5,10 +5,10 @@ import numpy as np
 import hashlib
 
 
-def load_dataset_bfl(imgsize=32, nb_class=100):
-    X_train, Y_train = load_dataset('/Users/lucas/Desktop/mestrado/Base_BFL_CVL_QUWI/BFL_Textura/BFL/CF00*_[12]_*.png', start=4, end=7, imgsize=imgsize, maxlabel=nb_class)
+def load_dataset_bfl(imgsize=32, nb_class=115):
+    X_train, Y_train = load_dataset('/Users/lucas/Desktop/mestrado/Base_BFL_CVL_QUWI/BFL_Textura/BFL/CF00*_[23]_*.png', start=4, end=7, imgsize=imgsize, maxlabel=nb_class)
 
-    X_test, Y_test = load_dataset('/Users/lucas/Desktop/mestrado/Base_BFL_CVL_QUWI/BFL_Textura/BFL/CF00*_[3]_*.png', start=4, end=7, imgsize=imgsize, maxlabel=nb_class)
+    X_test, Y_test = load_dataset('/Users/lucas/Desktop/mestrado/Base_BFL_CVL_QUWI/BFL_Textura/BFL/CF00*_[1]_*.png', start=4, end=7, imgsize=imgsize, maxlabel=nb_class)
 
     return X_train, Y_train, X_test, Y_test
 
