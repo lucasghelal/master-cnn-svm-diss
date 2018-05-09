@@ -2,6 +2,8 @@ datasets/
 .DS_Store
 *.npy
 
+BFL115/Pesos/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
