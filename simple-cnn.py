@@ -2,16 +2,17 @@ import numpy as np
 from random import shuffle
 from cnnmodel import cnn_model
 from loadgeneric import load_dataset_bfl
+from keras import backend
 from keras.utils import np_utils
 from sklearn.metrics import accuracy_score
-from utils import join_preds, plot_model_history
+from utils import join_preds, plot_model_history, gerar_svm, write_svm
 import os
 
 
 np.random.seed(123)
 
-cnn_name = 'Rede-BFL-TrainC2C3-TestC1-115writes-4096-100ep'
-nb_class = 115
+cnn_name = 'Rede-BFL-TrainC1C2-TestC3-315writes-2048-100ep'
+nb_class = 315
 imgsize = 32
 batch_size = 32
 nb_epochs = 100
@@ -58,3 +59,29 @@ print("")
 print("SUM:", accuracy_score(Y_test_class, join_preds(pred, Y_test_ids, np.sum)))
 print("PROD:", accuracy_score(Y_test_class, join_preds(pred, Y_test_ids, np.prod)))
 print("MAX:", accuracy_score(Y_test_class, join_preds(pred, Y_test_ids, np.max)))
+
+
+
+X_train, Y_train, X_test, Y_test = load_dataset_bfl(imgsize=imgsize, nb_class=nb_class)
+
+# nb_class = np.max(Y_train)
+
+X_train = X_train.astype('float32')
+X_test = X_test.astype('float32')
+X_train /= 255
+X_test /= 255
+
+Y_train[:] -= 1
+Y_test[:] -= 1
+
+Y_train = np_utils.to_categorical(Y_train, nb_class)
+Y_test = np_utils.to_categorical(Y_test, nb_class)
+
+model.summary()
+
+get_output = backend.function([model.layers[0].input, backend.learning_phase()], [model.layers[-3].output])
+
+labels_train, features_train = gerar_svm(X_train, Y_train, num_blocos=180, get_output=get_output, mode=np.sum)
+labels_test, features_test = gerar_svm(X_test, Y_test, num_blocos=180, get_output=get_output, mode=np.sum)
+write_svm(cnn_name + "-train.svm", features_train, labels_train)
+write_svm(cnn_name + "-test.svm", features_test, labels_test)
