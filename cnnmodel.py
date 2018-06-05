@@ -28,7 +28,7 @@ def cnn_model(input_shape, nb_class):
     x = Activation('relu')(x)
 
     x = Dropout(0.5)(x)
-    x = Dense(2048, activation="relu")(x)
+    x = Dense(256, activation="relu")(x)
     x = Activation('relu')(x)
 
     output = Dense(nb_class)(x)
@@ -37,7 +37,7 @@ def cnn_model(input_shape, nb_class):
     model = Model(inputs=input_conv, outputs=output)
 
     model.compile(loss='categorical_crossentropy',
-                  optimizer='sgd',
+                  optimizer='adam',
                   metrics=['accuracy'])
 
     return model
