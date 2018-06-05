@@ -22,6 +22,7 @@ def plot_model_history(h, mode="loss", file_name=""):
     legend = [mode]
 
     x = range(len(h[mode]))
+    plt.figure(figsize=(8, 8))
     plt.plot(x, h[mode], marker='.')
 
     if "val_" + mode in h:
@@ -32,6 +33,15 @@ def plot_model_history(h, mode="loss", file_name=""):
     plt.title(mode + ' over epochs')
     plt.legend(legend, loc='center right')
     plt.savefig(file_name)
+
+
+def write_txt(nome, features, labels):
+    with open(nome, 'w') as f:
+        for label, features_line in zip(labels, features):
+            features_str = []
+            for i, feature in enumerate(features_line):
+                features_str.append('%.6f' % (feature))
+            f.write("%s %d\n" % (' '.join(features_str), label))
 
 
 def write_svm(nome, features, labels):
