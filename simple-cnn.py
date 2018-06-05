@@ -5,17 +5,17 @@ from loadgeneric import load_dataset_bfl
 from keras import backend
 from keras.utils import np_utils
 from sklearn.metrics import accuracy_score
-from utils import join_preds, plot_model_history, gerar_svm, write_svm
+from utils import join_preds, plot_model_history, gerar_svm, write_svm, write_txt
 import os
 
 
 np.random.seed(123)
 
-cnn_name = 'Rede-BFL-TrainC1C2-TestC3-315writes-2048-100ep'
-nb_class = 315
+cnn_name = 'Rede-BFL-TrainC1-TestC3-115writes-256-100ep'
+nb_class = 115
 imgsize = 32
 batch_size = 32
-nb_epochs = 100
+nb_epochs = 10
 blocos = 320
 
 X_train, Y_train, X_test, Y_test = load_dataset_bfl(imgsize=imgsize, nb_class=nb_class)
@@ -81,7 +81,8 @@ model.summary()
 
 get_output = backend.function([model.layers[0].input, backend.learning_phase()], [model.layers[-3].output])
 
-labels_train, features_train = gerar_svm(X_train, Y_train, num_blocos=180, get_output=get_output, mode=np.sum)
-labels_test, features_test = gerar_svm(X_test, Y_test, num_blocos=180, get_output=get_output, mode=np.sum)
-write_svm(cnn_name + "-train.svm", features_train, labels_train)
-write_svm(cnn_name + "-test.svm", features_test, labels_test)
+labels_train, features_train = gerar_svm(X_train, Y_train, num_blocos=40, get_output=get_output, mode=np.average)
+# labels_test, features_test = gerar_svm(X_test, Y_test, num_blocos=1, get_output=get_output, mode=np.average)
+# write_svm(cnn_name + "-train.svm", features_train, labels_train)
+# write_svm(cnn_name + "-test.svm", features_test, labels_test)
+write_txt(cnn_name + "-train.txt", features_train, labels_train)
