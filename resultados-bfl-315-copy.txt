@@ -1,0 +1,59 @@
+Bases utilizada no
+                    Modelo:	BFL
+                    Treino:	BFL
+                    Teste:	BFL
+Detalhes da base BFL
+                    Escritores:	315
+                    Documentos:	3
+#1
+Modelo: Doc. 1
+Treino: Doc. 1
+Teste: Doc. 2
+
+Resultados
+315 (100800, 315)
+SUM: 0.780952380952
+315 (100800, 315)
+PROD: 0.0031746031746
+315 (100800, 315)
+MAX: 0.463492063492
+
+**************
+#2
+Modelo: Doc. 1
+Treino: Doc. 1
+Teste: Doc. 3
+
+Resultados
+315 (100800, 315)
+SUM: 0.787301587302
+315 (100800, 315)
+PROD: 0.0031746031746
+315 (100800, 315)
+MAX: 0.425396825397
+**************
+#3
+Modelo: Doc. 1,2
+Treino: Doc. 1,2
+Teste: Doc. 3
+
+Resultados
+
+
+**************
+#4
+Modelo: Doc. 1,3
+Treino: Doc. 1,3
+Teste: Doc. 2
+Resultados
+
+**************
+#5
+Modelo: Doc. 2,3
+Treino: Doc. 2,3
+Teste: Doc. 1
+Resultados
+
+**************
+
+---------------------------------------------
