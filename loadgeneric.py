@@ -12,6 +12,13 @@ def load_dataset_bfl(imgsize=32, nb_class=115):
 
     return X_train, Y_train, X_test, Y_test
 
+def load_dataset_bfl32(imgsize=32, nb_class=115):
+    X_train, Y_train = load_dataset('/Users/lucas/Desktop/bfl32/CF00*_[1]_*.png', start=4, end=7, imgsize=imgsize, maxlabel=nb_class)
+
+    X_test, Y_test = load_dataset('/Users/lucas/Desktop/bfl32/CF00*_[3]_*.png', start=4, end=7, imgsize=imgsize, maxlabel=nb_class)
+
+    return X_train, Y_train, X_test, Y_test
+
 
 def load_dataset_cvl(basedir='/Users/lucas/workspace/databases/CVL_Subset/**/*_*_00[12]_*.bmp', imgsize=256):
     return load_dataset(basedir, start=5, end=9, imgsize=imgsize)

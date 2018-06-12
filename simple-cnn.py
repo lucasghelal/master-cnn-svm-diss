@@ -1,7 +1,7 @@
 import numpy as np
 from random import shuffle
 from cnnmodel import cnn_model
-from loadgeneric import load_dataset_bfl
+from loadgeneric import load_dataset_bfl32
 from keras import backend
 from keras.utils import np_utils
 from sklearn.metrics import accuracy_score
@@ -11,14 +11,14 @@ import os
 
 np.random.seed(123)
 
-cnn_name = 'Rede-BFL-TrainC1-TestC3-115writes-256-100ep'
-nb_class = 115
+cnn_name = 'BFL-TrainC1-TestC3-115w-512-50ep'
+nb_class = 315
 imgsize = 32
 batch_size = 32
-nb_epochs = 10
-blocos = 320
+nb_epochs = 50
+blocos = 576
 
-X_train, Y_train, X_test, Y_test = load_dataset_bfl(imgsize=imgsize, nb_class=nb_class)
+X_train, Y_train, X_test, Y_test = load_dataset_bfl32(imgsize=imgsize, nb_class=nb_class)
 
 # nb_class = np.max(Y_train)
 
@@ -62,7 +62,7 @@ print("MAX:", accuracy_score(Y_test_class, join_preds(pred, Y_test_ids, np.max))
 
 
 
-X_train, Y_train, X_test, Y_test = load_dataset_bfl(imgsize=imgsize, nb_class=nb_class)
+X_train, Y_train, X_test, Y_test = load_dataset_bfl32(imgsize=imgsize, nb_class=nb_class)
 
 # nb_class = np.max(Y_train)
 
@@ -79,10 +79,10 @@ Y_test = np_utils.to_categorical(Y_test, nb_class)
 
 model.summary()
 
-get_output = backend.function([model.layers[0].input, backend.learning_phase()], [model.layers[-3].output])
+# get_output = backend.function([model.layers[0].input, backend.learning_phase()], [model.layers[-3].output])
 
-labels_train, features_train = gerar_svm(X_train, Y_train, num_blocos=40, get_output=get_output, mode=np.average)
-# labels_test, features_test = gerar_svm(X_test, Y_test, num_blocos=1, get_output=get_output, mode=np.average)
+# labels_train, features_train = gerar_svm(X_train, Y_train, num_blocos=576, get_output=get_output, mode=np.average)
+# labels_test, features_test = gerar_svm(X_test, Y_test, num_blocos=576, get_output=get_output, mode=np.average)
 # write_svm(cnn_name + "-train.svm", features_train, labels_train)
 # write_svm(cnn_name + "-test.svm", features_test, labels_test)
-write_txt(cnn_name + "-train.txt", features_train, labels_train)
+# write_txt(cnn_name + "-train.txt", features_train, labels_train)
