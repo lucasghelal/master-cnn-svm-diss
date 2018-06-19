@@ -18,7 +18,7 @@ batch_size = 32
 nb_epochs = 50
 blocos = 576
 
-X_train, Y_train, X_test, Y_test = load_dataset_bfl32(imgsize=imgsize, nb_class=nb_class)
+X_train, Y_train, X_test, Y_test = load_dataset_bfl32(imgsize=imgsize, nb_class=nb_class, carta_treino=1, carta_teste=3)
 
 # nb_class = np.max(Y_train)
 

@@ -12,10 +12,10 @@ def load_dataset_bfl(imgsize=32, nb_class=115):
 
     return X_train, Y_train, X_test, Y_test
 
-def load_dataset_bfl32(imgsize=32, nb_class=115):
-    X_train, Y_train = load_dataset('/Users/lucas/Desktop/bfl32/CF00*_[1]_*.png', start=4, end=7, imgsize=imgsize, maxlabel=nb_class)
+def load_dataset_bfl32(imgsize=32, nb_class=115, carta_treino=1, carta_teste=2):
+    X_train, Y_train = load_dataset('/Users/lucas/Desktop/bfl32/CF00*_['+ str(carta_treino)+']_*.png', start=4, end=7, imgsize=imgsize, maxlabel=nb_class)
 
-    X_test, Y_test = load_dataset('/Users/lucas/Desktop/bfl32/CF00*_[3]_*.png', start=4, end=7, imgsize=imgsize, maxlabel=nb_class)
+    X_test, Y_test = load_dataset('/Users/lucas/Desktop/bfl32/CF00*_['+ str(carta_teste)+']_*.png', start=4, end=7, imgsize=imgsize, maxlabel=nb_class)
 
     return X_train, Y_train, X_test, Y_test
 

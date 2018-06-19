@@ -7,15 +7,12 @@ from utils import join_preds, plot_model_history, gerar_svm, write_svm, write_tx
 nb_class = 315
 imgsize = 32
 cnn_name = 'BFL-TrainC2-TestC3_DISS_3'
-cnn_name_weights = 'BFL-TrainC1-TestC2-115w-512-50ep'
+cnn_name_weights = 'BFL-TrainC1-TestC3-115w-512-50ep'
 
 model = cnn_model(input_shape=(1, imgsize, imgsize), nb_class=nb_class)
 model.load_weights(cnn_name_weights)
 
-X_train = np.load('0bb2951eb164d277baad3f63a7ec213eea9c7859_data.npy')
-Y_train = np.load('0bb2951eb164d277baad3f63a7ec213eea9c7859_label.npy')
-X_test = np.load('c245f70eabfab2b930a342a696f9cc34c6be7332_data.npy')
-Y_test = np.load('c245f70eabfab2b930a342a696f9cc34c6be7332_label.npy')
+X_train, Y_train, X_test, Y_test = load_dataset_bfl32(imgsize=imgsize, nb_class=nb_class, carta_treino=2, carta_teste=3)
 
 X_train = X_train.astype('float32')
 X_test = X_test.astype('float32')
@@ -37,5 +34,5 @@ labels_test, features_test = gerar_svm(X_test, Y_test, num_blocos=192, get_outpu
 # write_svm(cnn_name + "-train.svm", features_train, labels_train)
 # write_svm(cnn_name + "-test.svm", features_test, labels_test)
 write_txt(cnn_name + "-train.txt", features_train, labels_train)
-write_txt(cnn_name + "-test.svm", features_test, labels_test)
+write_txt(cnn_name + "-test.txt", features_test, labels_test)
 
