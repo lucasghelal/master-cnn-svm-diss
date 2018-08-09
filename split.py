@@ -3,6 +3,28 @@ import glob
 import os
 import numpy as np
 
+
+def split_blocos(img, label, blocos=9, size_x=32, size_y=32):
+    print(img.shape)
+    max_size_x = img.shape[1] - (img.shape[1] % blocos)
+    img = img[:][:max_size_x][:]
+    
+    x = int((img.shape[1] / size_x) / blocos)
+    y = int(img.shape[2] / size_y)
+
+    print(max_size_x, x, y)
+    ret = []
+    map_imagem_bloco = []
+    for bloco in range(blocos):
+        for i in range(x):
+            row = i * bloco
+            for col in range(y):
+                map_imagem_bloco.append(bloco)
+                ret.append(img[0][size_x*row:size_x*(row+1), size_y*col:size_y*(col+1)])
+    
+    ret = np.array(ret)
+    print(ret.shape)
+
 def split(img, label, ratioY=4, ratioX=4):
     new_size = ratioX*ratioY
     new_size_x = int(img.shape[1]/ratioX)
@@ -34,7 +56,7 @@ def split_files(path, save_path, ratioX, ratioY, expected_size=None):
 
         # inverter ratio por causa que é a transposta da imagem
         imagens, labels = split(image, 0, ratioY=ratioY, ratioX=ratioX)
-
+        print (imagens.shape)
         if expected_size:
             assert(expected_size == imagens[0][0].shape)
 
@@ -42,7 +64,12 @@ def split_files(path, save_path, ratioX, ratioY, expected_size=None):
             imwrite(os.path.join(save_path, "%s_%d.png" % (filename[:-4], i)), np.array(image_new[0], dtype="uint8").T) 
 
 
-path = '/Users/lucas/Desktop/mestrado/Bases - Lucas/Base_BFL_CVL_QUWI/BFL_Textura/*'
-save_path = '/Users/lucas/Desktop/bfl32/'
+#path = '/Users/lucas/Desktop/mestrado/Bases - Lucas/Base_BFL_CVL_QUWI/BFL_Textura/*'
+# path = 'imagens/*.bmp'
+# save_path = 'cvl/'
+# split_files(path, save_path, 72, 8)
 
-split_files(path, save_path, 72, 8, expected_size=(32, 32))
+image = imread('imagens/CVL01.bmp')
+image = image.T
+image = image[np.newaxis]
+split_blocos(image, 'teste')
